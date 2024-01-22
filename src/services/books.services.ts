@@ -31,7 +31,12 @@ export class BooksServices implements IBooksServices {
     return newBook;
   }
 
-  getAll(): IBook[] {
+  getAll(searchParam?: string): IBook[] {
+    if (searchParam) {
+      return booksDatabase.filter((book) =>
+        book.name.toLowerCase().includes(searchParam.toLowerCase())
+      );
+    }
     return booksDatabase;
   }
 
