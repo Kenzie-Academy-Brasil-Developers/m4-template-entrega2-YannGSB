@@ -21,8 +21,9 @@ export class BooksControllers implements IBooksControllers {
 
   getAll(req: Request, res: Response): Response {
     const booksServices = new BooksServices();
+    const search = req.query.search as string | undefined;
 
-    const getAll = booksServices.getAll();
+    const getAll = booksServices.getAll(search);
 
     return res.status(200).json(getAll);
   }
